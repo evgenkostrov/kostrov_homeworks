@@ -1,3 +1,29 @@
 <resources>
-    <string name="app_name">kostrov_homeworks</string>
+    <string name="app_name">Decision Maker</string>
+    <string name="text_view_hint">Твоя очередь!</string>
+
+    <string-array name="first_part">
+        <item>Вам нужно</item>
+        <item>Советую вам</item>
+        <item>Это будет страшной ошибкой -</item>
+        <item>Нужно немедленно</item>
+        <item>Это очень рискованно -</item>
+        <item>Невозможно</item>
+        <item>Лучше всего тайком</item>
+        <item>Чувствую, что вы хотите</item>
+        <item>Вы сами знаете, что следует</item>
+        <item>Повелеваю</item>
+    </string-array>
+    <string-array name="second_part">
+        <item>Заняться этим прямо сейчас</item>
+        <item>Ещё раз всё обдумать</item>
+        <item>Предусмотреть путь для отступления</item>
+        <item>Прыгнуть в омут с головой</item>
+        <item>Поторопиться с принятием решения</item>
+        <item>Забыть об этом</item>
+        <item>Сделать, но никому не рассказывать</item>
+        <item>Рассказать об этом другу и послушать его совета</item>
+        <item>Послушать меня и сделать наоборот</item>
+        <item>Перестать спрашивать у бесполезного меня и принять решение самостоятельно. В КОИ-ТО ВЕКИ!</item>
+    </string-array>
 </resources>
