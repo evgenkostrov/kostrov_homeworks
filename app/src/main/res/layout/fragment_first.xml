@@ -8,27 +8,41 @@
 
     <TextView
         android:id="@+id/textview_first"
+        android:background="@drawable/rectangle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=""
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:paddingStart="12dp"
+        android:paddingTop="7dp"
+        android:paddingBottom="8dp"
+        android:paddingEnd="12dp"
+        android:textSize="18sp"
+        android:text="@string/unmeasured"
+        android:textColor="@color/red"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="32dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.789" />
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutWeight"
+        />
 
     <Button
         android:id="@+id/button_first"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:paddingStart="12dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:paddingEnd="12dp"
+        android:textSize="18sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Calculate"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="32dp"
+        android:text="@string/calculate_bmi"
+        android:textAllCaps="false"
+        android:textColor="@color/blue"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.663" />
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutWeight" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayoutHeight"
@@ -36,21 +50,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="48dp"
         android:layout_marginEnd="32dp"
-        android:hint="Height in meters"
+        android:hint="@string/height_in_meters"
         app:counterEnabled="true"
         app:counterMaxLength="5"
         app:endIconMode="clear_text"
         app:errorEnabled="true"
         app:helperText="Required*"
         app:helperTextTextColor="@color/red"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.177"
         app:startIconDrawable="@drawable/ic_baseline_height_24"
         app:suffixText="meter">
 
@@ -69,21 +80,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="48dp"
         android:layout_marginEnd="32dp"
-        android:hint="Height in kilograms"
+        android:hint="@string/weight_in_kilograms"
         app:counterEnabled="true"
         app:counterMaxLength="5"
         app:endIconMode="clear_text"
         app:errorEnabled="true"
         app:helperText="Required*"
         app:helperTextTextColor="@color/red"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.433"
+        app:layout_constraintTop_toBottomOf="@id/textInputLayoutHeight"
         app:startIconDrawable="@drawable/ic_baseline_monitor_weight_24"
         app:suffixText="kilogram">
 
@@ -94,7 +102,32 @@
             android:inputType="numberDecimal"
             android:maxLength="5" />
 
+
+
     </com.google.android.material.textfield.TextInputLayout>
+
+
+    <TextView
+        android:id="@+id/textview_second"
+        android:background="@drawable/rounded_rectangle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="12dp"
+        android:paddingTop="7dp"
+        android:paddingBottom="8dp"
+        android:paddingEnd="12dp"
+        android:textSize="10sp"
+        android:text="@string/unmeasured"
+        android:textColor="@color/red"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="32dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
