@@ -8,23 +8,15 @@ import com.epam.kostrov_homeworks.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivityMainBinding
-    lateinit var timer: CountDownTimer
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater).also {setContentView(it.root)  }
+        binding = ActivityMainBinding.inflate(layoutInflater).also { setContentView(it.root) }
 
         var count = 0
-        val listPartFirst = resources.getStringArray(R.array.first_part)
+        val listPartFirst = ListPartFirst().list
         val listPartSecond = resources.getStringArray(R.array.second_part)
-
-//        val resultList = mutableListOf<String>()
-//        resultList.add("0")
-//        resultList.add("${(0..9).random()}  ${listPartFirst[(0..9).random()]}  \n ${listPartSecond[(0..9).random()].lowercase()}")
-//        val arrayAdapter = ArrayAdapter(this, R.layout.dropdown_item, resultList)
-//        binding.autoCompleteTextView.setAdapter(arrayAdapter)
-//        binding.textViewHint.setCompoundDrawablesWithIntrinsicBounds()
 
         binding.buttonHourglass.setOnClickListener {
             val anim = AnimationUtils.loadAnimation(this, R.anim.rotate_center)
@@ -37,11 +29,14 @@ class MainActivity : AppCompatActivity() {
                 binding.imageViewHourglass.startAnimation(anim)
                 binding.buttonPlay.isClickable = false
             }
+
             override fun onFinish() {
                 with(binding) {
                     buttonCounter.text = "$count"
-                    textViewResult.text =
-                        "${listPartFirst[(0..9).random()]}\n${listPartSecond[(0..9).random()].lowercase()}"
+                    textViewResult.apply {
+                        text =
+                            "${listPartFirst[randomZeroNine()]}\n${listPartSecond[randomZeroNine()].lowercase()}"
+                    }
                     buttonPlay.isClickable = true
                 }
             }
@@ -53,8 +48,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        timer.cancel()
+    private fun randomZeroNine(): Int {
+        return (0..9).random()
     }
 }
