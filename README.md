@@ -6,8 +6,6 @@
 
 ![alt text](https://github.com/evgenkostrov/kostrov_homeworks/blob/homework_2_counter/counters.gif)
 
-![alt text](https://github.com/evgenkostrov/kostrov_homeworks/blob/homework_2_counter/counter.apk)
-
 
 1.   >Идея>>Счетчик емкости автомобильного аккумулятора (виртуальный): при нажатии в любое место кроме кнопки "Заряжай" емкость теряется на 1 мАч!
       
