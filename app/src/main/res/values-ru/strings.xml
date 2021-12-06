@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Счетчик</string>
+    <string name="counter_symbols">Счетчик символов</string>
+    <string name="counter_symbols1">Счетчик символов*</string>
+    <string name="count">Заряжай!</string>
+    <string name="mAh">мАч</string>
+    <string name="space">/</string>
+    <string name="symbols">символы</string>
+    <string name="counter_capacity">Счетчик емкости</string>
+</resources>

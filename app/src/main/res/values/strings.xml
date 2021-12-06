@@ -1,3 +1,12 @@
 <resources>
-    <string name="app_name">kostrov_homeworks</string>
+    <string name="app_name">Counter</string>
+    <string name="counter_symbols">Counter Symbols</string>
+    <string name="counter_symbols1">Counter Symbols*</string>
+    <string name="count">Charge!</string>
+    <string name="mAh">mAh</string>
+    <string name="space">/</string>
+    <string name="symbols">symbols</string>
+    <string name="counter_capacity">Counter capacity</string>
+
+
 </resources>
