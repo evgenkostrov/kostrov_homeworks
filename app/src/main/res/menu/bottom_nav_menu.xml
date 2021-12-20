@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <item android:id="@+id/BBFragment"
+        android:title="1946-1960"
+        android:icon="@drawable/ic_bb"
+        app:showAsAction="ifRoom"/>
+
+    <item android:id="@+id/XFragment"
+        android:title="1961-1980"
+        android:icon="@drawable/ic_x"
+        app:showAsAction="ifRoom"/>
+
+    <item android:id="@+id/placeholder"
+        android:title="" />
+
+    <item android:id="@+id/YFragment"
+        android:title="1981-1995"
+        android:icon="@drawable/ic_y"
+        app:showAsAction="ifRoom"/>
+
+    <item android:id="@+id/ZFragment"
+        android:title="1995-2015"
+        android:icon="@drawable/ic_z"
+        app:showAsAction="ifRoom"/>
+
+
+
+</menu>
