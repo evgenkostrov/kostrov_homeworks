@@ -1,33 +1,47 @@
 package com.epam.kostrov_homeworks
 
 import android.graphics.Color
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.widget.Toolbar
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
 import com.epam.kostrov_homeworks.databinding.ActivityMainBinding
 import com.google.android.material.badge.BadgeDrawable
 
 class MainActivity : AppCompatActivity() {
 
-
     private lateinit var binding: ActivityMainBinding
+
+    private var currentFragment = BB_FRAGMENT
+    private val bBFragment = BBFragment()
+    private val xFragment = XFragment()
+    private val yFragment = YFragment()
+    private val zFragment = ZFragment()
+
+    companion object {
+        private const val BB_FRAGMENT = "babyBoomer"
+        private const val X_FRAGMENT = "generationX"
+        private const val Y_FRAGMENT = "generationY"
+        private const val Z_FRAGMENT = "generationZ"
+
+    }
+
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view: View = binding.root
         setContentView(view)
-        supportActionBar?.hide()
+        window.statusBarColor = getColor(R.color.grey)
 
-        var appToolbarSubtitle = binding.topAppBar
-        val babyBoomerFragment = BBFragment()
-        val xFragment = XFragment()
-        val yFragment = YFragment()
-        val zFragment = ZFragment()
-        loadFragment(babyBoomerFragment)
-        appToolbarSubtitle.subtitle = "Baby Boomer"
 
+        if (savedInstanceState == null) {
+            loadFragment(bBFragment)
+            appToolbarSubtitle("Baby Boomer")
+        }
         supportFragmentManager.addOnBackStackChangedListener {
             binding.tvCounterClick.text = supportFragmentManager.backStackEntryCount.toString()
         }
@@ -35,101 +49,91 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.BBFragment -> {
-                    loadFragment(babyBoomerFragment)
-                    appToolbarSubtitle.subtitle = "Baby Boomer"
-                    supportFragmentManager.restoreBackStack("babyBoomer")
-                    supportFragmentManager.saveBackStack("generationX")
-                    supportFragmentManager.saveBackStack("generationY")
-                    supportFragmentManager.saveBackStack("generationZ")
-//                    supportFragmentManager.addOnBackStackChangedListener {
-//                        binding.bottomNavigationView.getOrCreateBadge(R.id.BBFragment).apply {
-//                            number = count
-//                            isVisible = true
-//                            badgeGravity = BadgeDrawable.TOP_START
-//                            backgroundColor = Color.RED
-//                        }
-//                    }
+                    appToolbarSubtitle("Baby Boomer")
+                    loadFragment(bBFragment)
+                    changeBackStack(currentFragment, BB_FRAGMENT)
                 }
                 R.id.XFragment -> {
+                    appToolbarSubtitle("Generation X")
                     loadFragment(xFragment)
-                    appToolbarSubtitle.subtitle = "Generation X"
-                    supportFragmentManager.saveBackStack("babyBoomer")
-                    supportFragmentManager.restoreBackStack("generationX")
-                    supportFragmentManager.saveBackStack("generationY")
-                    supportFragmentManager.saveBackStack("generationZ")
-
-
+                    changeBackStack(currentFragment, X_FRAGMENT)
                 }
                 R.id.YFragment -> {
+                    appToolbarSubtitle("Generation Y")
                     loadFragment(yFragment)
-                    appToolbarSubtitle.subtitle = "Generation Y"
-                    supportFragmentManager.saveBackStack("babyBoomer")
-                    supportFragmentManager.saveBackStack("generationX")
-                    supportFragmentManager.restoreBackStack("generationY")
-                    supportFragmentManager.saveBackStack("generationZ")
-
+                    changeBackStack(currentFragment, Y_FRAGMENT)
                 }
                 R.id.ZFragment -> {
+                    appToolbarSubtitle("Generation Z")
                     loadFragment(zFragment)
-                    appToolbarSubtitle.subtitle = "Generation Z"
-                    supportFragmentManager.saveBackStack("babyBoomer")
-                    supportFragmentManager.saveBackStack("generationX")
-                    supportFragmentManager.saveBackStack("generationY")
-                    supportFragmentManager.restoreBackStack("generationZ")
-
+                    changeBackStack(currentFragment, Z_FRAGMENT)
                 }
             }
             true
         }
 
-        binding.bottomNavigationView.getOrCreateBadge(R.id.BBFragment).apply {
-            isVisible = true
-            badgeGravity = BadgeDrawable.TOP_START
-            backgroundColor = Color.GREEN
+        supportFragmentManager.addOnBackStackChangedListener {
+            binding.bottomNavigationView.getOrCreateBadge(
+                when (currentFragment) {
+                    BB_FRAGMENT -> R.id.BBFragment
+                    X_FRAGMENT -> R.id.XFragment
+                    Y_FRAGMENT -> R.id.YFragment
+                    Z_FRAGMENT -> R.id.ZFragment
+                    else -> R.id.fragment_container
+                }
+            ).apply {
+                number = supportFragmentManager.backStackEntryCount
+                isVisible = number > 0
+            }
         }
 
-            binding.bottomNavigationView.getOrCreateBadge(R.id.XFragment).apply {
-                number = supportFragmentManager.backStackEntryCount
-                isVisible = true
-                badgeGravity = BadgeDrawable.TOP_START
-                backgroundColor = Color.BLUE
-            }
+        binding.bottomNavigationView.getOrCreateBadge(R.id.BBFragment).apply {
+            isVisible = false
+            badgeGravity = BadgeDrawable.TOP_START
+            backgroundColor = getColor(R.color.green)
+        }
 
-            binding.bottomNavigationView.getOrCreateBadge(R.id.YFragment).apply {
-                number = supportFragmentManager.backStackEntryCount
-                isVisible = true
-                badgeGravity = BadgeDrawable.TOP_END
-                backgroundColor = Color.RED
-            }
+        binding.bottomNavigationView.getOrCreateBadge(R.id.XFragment).apply {
+            isVisible = false
+            badgeGravity = BadgeDrawable.TOP_START
+            backgroundColor = getColor(R.color.blue)
+        }
 
+        binding.bottomNavigationView.getOrCreateBadge(R.id.YFragment).apply {
+            isVisible = false
+            badgeGravity = BadgeDrawable.TOP_END
+            backgroundColor = getColor(R.color.red)
+        }
 
-            binding.bottomNavigationView.getOrCreateBadge(R.id.ZFragment).apply {
-                number = supportFragmentManager.backStackEntryCount
-                isVisible = true
-                badgeGravity = BadgeDrawable.TOP_END
-                backgroundColor = Color.YELLOW
-            }
+        binding.bottomNavigationView.getOrCreateBadge(R.id.ZFragment).apply {
+            isVisible = false
+            badgeGravity = BadgeDrawable.TOP_END
+            backgroundColor = getColor(R.color.yellow)
+        }
     }
 
     private fun loadFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, fragment)
-            .setReorderingAllowed(true)
-            .commit()
-
+        supportFragmentManager.commit {
+            replace(R.id.fragment_container, fragment)
+            setReorderingAllowed(true)
+        }
     }
 
-//    override fun onBackPressed() {
-//        val transaction=supportFragmentManager.beginTransaction()
-//        val currentFragment=supportFragmentManager.findFragmentById(R.id.fragment_container)
-//            if (currentFragment != null) {
-//                transaction.remove(currentFragment)
-//                transaction.commit()
-//            }
-//        else{
-//            super.onBackPressed()
-//        }
-//    }
+    private fun changeBackStack(lastFragment: String, nextFragment: String) {
+        supportFragmentManager.restoreBackStack(nextFragment)
+        supportFragmentManager.saveBackStack(lastFragment)
+        currentFragment = nextFragment
+    }
 
+    private fun appToolbarSubtitle(subtitle: String) {
+        binding.topAppBar.subtitle = subtitle
+    }
 
+    override fun onBackPressed() {
+        if (supportFragmentManager.backStackEntryCount == 0) {
+            finish()
+        } else {
+            super.onBackPressed()
+        }
+    }
 }

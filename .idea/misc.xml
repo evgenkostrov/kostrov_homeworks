@@ -4,7 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable/background_radius_ten.xml" value="0.21041666666666667" />
+        <entry key="app/src/main/res/drawable/ic_baseline_mouse_24.xml" value="0.203125" />
+        <entry key="app/src/main/res/drawable/ic_bb.xml" value="0.203125" />
+        <entry key="app/src/main/res/drawable/ic_x.xml" value="0.203125" />
         <entry key="app/src/main/res/drawable/ic_y.xml" value="0.20677083333333332" />
+        <entry key="app/src/main/res/drawable/ic_z.xml" value="0.203125" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_b_b.xml" value="0.19427083333333334" />
         <entry key="app/src/main/res/layout/fragment_x.xml" value="0.190625" />

@@ -6,11 +6,11 @@
     tools:context=".YFragment">
 
 
-    <TextView
+    <ImageView
         android:gravity="center"
-        android:id="@+id/tvYFragment"
+        android:id="@+id/tvXFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:src="@drawable/go" />
 
 </FrameLayout>

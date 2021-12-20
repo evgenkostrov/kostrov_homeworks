@@ -16,15 +16,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <androidx.appcompat.widget.Toolbar
+            <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/topAppBar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:textAlignment="center"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:subtitleCentered="true"
+                app:subtitleTextColor="@color/white"
                 app:title="@string/page_title"
+                app:titleCentered="true"
                 app:titleTextColor="@color/white" />
 
             <TextView
@@ -73,9 +75,12 @@
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/green"
+        android:backgroundTint="@color/grey"
         android:src="@drawable/ic_baseline_mouse_24"
-        app:layout_anchor="@id/bottomAppBar" />
+        app:borderWidth="0dp"
+        app:layout_anchor="@id/bottomAppBar"
+        app:pressedTranslationZ="12dp"
+        app:tint="@android:color/white" />
 
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottomAppBar"
@@ -83,7 +88,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:background="@drawable/background_radius_ten"
-        android:backgroundTint="@color/green"
+        android:backgroundTint="@color/grey"
         app:fabCradleMargin="15dp"
         app:fabCradleRoundedCornerRadius="10dp"
         app:fabCradleVerticalOffset="5dp"
@@ -96,6 +101,7 @@
             android:layout_marginStart="0dp"
             android:layout_marginEnd="16dp"
             android:background="@android:color/transparent"
+            app:itemIconTint="@color/white"
             app:itemTextColor="@color/white"
             app:labelVisibilityMode="labeled"
             app:menu="@menu/bottom_nav_menu" />
