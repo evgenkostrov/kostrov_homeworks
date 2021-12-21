@@ -1,6 +1,9 @@
 <resources>
-    <string name="app_name">kostrov_homeworks</string>
+    <string name="app_name">Generations</string>
     <string name="page_title">Generations</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="subtitle_bb">Baby boomer</string>
+    <string name="subtitle_x">Generations X</string>
+    <string name="subtitle_y">Generations Y</string>
+    <string name="subtitle_z">Generations Z</string>
+
 </resources>

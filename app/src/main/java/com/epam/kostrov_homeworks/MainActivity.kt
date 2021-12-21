@@ -1,12 +1,13 @@
 package com.epam.kostrov_homeworks
 
-import android.graphics.Color
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.annotation.RequiresApi
+import androidx.core.view.forEach
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.commit
 import com.epam.kostrov_homeworks.databinding.ActivityMainBinding
 import com.google.android.material.badge.BadgeDrawable
@@ -15,18 +16,17 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    private var currentFragment = BB_FRAGMENT
+    private var currentFragment = BB_FRAGMENT_NAME
     private val bBFragment = BBFragment()
     private val xFragment = XFragment()
     private val yFragment = YFragment()
     private val zFragment = ZFragment()
 
     companion object {
-        private const val BB_FRAGMENT = "babyBoomer"
-        private const val X_FRAGMENT = "generationX"
-        private const val Y_FRAGMENT = "generationY"
-        private const val Z_FRAGMENT = "generationZ"
-
+        private const val BB_FRAGMENT_NAME = "babyBoomer"
+        private const val X_FRAGMENT_NAME = "generationX"
+        private const val Y_FRAGMENT_NAME = "generationY"
+        private const val Z_FRAGMENT_NAME = "generationZ"
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
@@ -37,10 +37,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(view)
         window.statusBarColor = getColor(R.color.grey)
 
-
         if (savedInstanceState == null) {
             loadFragment(bBFragment)
-            appToolbarSubtitle("Baby Boomer")
+            appToolbarSubtitle(getString(R.string.subtitle_bb))
         }
         supportFragmentManager.addOnBackStackChangedListener {
             binding.tvCounterClick.text = supportFragmentManager.backStackEntryCount.toString()
@@ -49,24 +48,24 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.BBFragment -> {
-                    appToolbarSubtitle("Baby Boomer")
+                    appToolbarSubtitle(getString(R.string.subtitle_bb))
                     loadFragment(bBFragment)
-                    changeBackStack(currentFragment, BB_FRAGMENT)
+                    changeBackStack(currentFragment, BB_FRAGMENT_NAME)
                 }
                 R.id.XFragment -> {
-                    appToolbarSubtitle("Generation X")
+                    appToolbarSubtitle(getString(R.string.subtitle_x))
                     loadFragment(xFragment)
-                    changeBackStack(currentFragment, X_FRAGMENT)
+                    changeBackStack(currentFragment, X_FRAGMENT_NAME)
                 }
                 R.id.YFragment -> {
-                    appToolbarSubtitle("Generation Y")
+                    appToolbarSubtitle(getString(R.string.subtitle_y))
                     loadFragment(yFragment)
-                    changeBackStack(currentFragment, Y_FRAGMENT)
+                    changeBackStack(currentFragment, Y_FRAGMENT_NAME)
                 }
                 R.id.ZFragment -> {
-                    appToolbarSubtitle("Generation Z")
+                    appToolbarSubtitle(getString(R.string.subtitle_z))
                     loadFragment(zFragment)
-                    changeBackStack(currentFragment, Z_FRAGMENT)
+                    changeBackStack(currentFragment, Z_FRAGMENT_NAME)
                 }
             }
             true
@@ -75,40 +74,47 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.addOnBackStackChangedListener {
             binding.bottomNavigationView.getOrCreateBadge(
                 when (currentFragment) {
-                    BB_FRAGMENT -> R.id.BBFragment
-                    X_FRAGMENT -> R.id.XFragment
-                    Y_FRAGMENT -> R.id.YFragment
-                    Z_FRAGMENT -> R.id.ZFragment
+                    BB_FRAGMENT_NAME -> R.id.BBFragment
+                    X_FRAGMENT_NAME -> R.id.XFragment
+                    Y_FRAGMENT_NAME -> R.id.YFragment
+                    Z_FRAGMENT_NAME -> R.id.ZFragment
                     else -> R.id.fragment_container
                 }
             ).apply {
                 number = supportFragmentManager.backStackEntryCount
-                isVisible = number > 0
+                isVisible = number >= 1
+                badgeGravity = when (currentFragment) {
+                    BB_FRAGMENT_NAME -> BadgeDrawable.TOP_START
+                    X_FRAGMENT_NAME -> BadgeDrawable.TOP_START
+                    Y_FRAGMENT_NAME -> BadgeDrawable.TOP_END
+                    Z_FRAGMENT_NAME -> BadgeDrawable.TOP_END
+                    else -> 0
+                }
+                backgroundColor = when (currentFragment) {
+                    BB_FRAGMENT_NAME -> getColor(R.color.green)
+                    X_FRAGMENT_NAME -> getColor(R.color.blue)
+                    Y_FRAGMENT_NAME -> getColor(R.color.red)
+                    Z_FRAGMENT_NAME -> getColor(R.color.yellow)
+                    else -> getColor(R.color.grey)
+                }
             }
         }
 
-        binding.bottomNavigationView.getOrCreateBadge(R.id.BBFragment).apply {
-            isVisible = false
-            badgeGravity = BadgeDrawable.TOP_START
-            backgroundColor = getColor(R.color.green)
-        }
-
-        binding.bottomNavigationView.getOrCreateBadge(R.id.XFragment).apply {
-            isVisible = false
-            badgeGravity = BadgeDrawable.TOP_START
-            backgroundColor = getColor(R.color.blue)
-        }
-
-        binding.bottomNavigationView.getOrCreateBadge(R.id.YFragment).apply {
-            isVisible = false
-            badgeGravity = BadgeDrawable.TOP_END
-            backgroundColor = getColor(R.color.red)
-        }
-
-        binding.bottomNavigationView.getOrCreateBadge(R.id.ZFragment).apply {
-            isVisible = false
-            badgeGravity = BadgeDrawable.TOP_END
-            backgroundColor = getColor(R.color.yellow)
+        binding.fab.setOnClickListener {
+            with(supportFragmentManager){
+                clearBackStack(BB_FRAGMENT_NAME)
+                clearBackStack(X_FRAGMENT_NAME)
+                clearBackStack(Y_FRAGMENT_NAME)
+                clearBackStack(Z_FRAGMENT_NAME)
+                popBackStack(
+                    currentFragment,
+                    FragmentManager.POP_BACK_STACK_INCLUSIVE
+                )
+            }
+            binding.bottomNavigationView.menu.forEach { menu ->
+                binding.bottomNavigationView.getOrCreateBadge(menu.itemId)
+                    .also { it.isVisible = false }
+            }
         }
     }
 
@@ -120,8 +126,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun changeBackStack(lastFragment: String, nextFragment: String) {
-        supportFragmentManager.restoreBackStack(nextFragment)
         supportFragmentManager.saveBackStack(lastFragment)
+        supportFragmentManager.restoreBackStack(nextFragment)
         currentFragment = nextFragment
     }
 

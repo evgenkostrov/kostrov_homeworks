@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
 import com.epam.kostrov_homeworks.databinding.FragmentXBinding
 
 
@@ -24,26 +25,24 @@ class XFragment : Fragment() {
         requireActivity().window.setBackgroundDrawableResource(R.color.blue)
 
         binding.root.setOnClickListener {
-            val trans = parentFragmentManager.beginTransaction()
-            trans.setReorderingAllowed(true)
-            trans.addToBackStack("generationX")
-            trans.commit()
+            parentFragmentManager.commit {
+                setReorderingAllowed(true)
+                addToBackStack("generationX")
+            }
         }
 
-        val callback=object: OnBackPressedCallback(true){
+        val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 parentFragmentManager.popBackStack()
             }
         }
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,callback)
-
-
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
 
         return binding.root
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        _binding=null
+        _binding = null
     }
 }

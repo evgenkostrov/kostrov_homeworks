@@ -5,12 +5,11 @@
     android:layout_height="match_parent"
     tools:context=".XFragment">
 
-
     <ImageView
         android:gravity="center"
         android:id="@+id/tvXFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/a6" />
+        android:src="@drawable/x" />
 
 </FrameLayout>

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
+import androidx.fragment.app.commit
 import com.epam.kostrov_homeworks.databinding.FragmentBBBinding
 
 
@@ -23,12 +24,11 @@ class BBFragment : Fragment() {
 
         requireActivity().window.setBackgroundDrawableResource(R.color.green)
 
-
         binding.root.setOnClickListener {
-            val trans = parentFragmentManager.beginTransaction()
-            trans.setReorderingAllowed(true)
-            trans.addToBackStack("babyBoomer")
-            trans.commit()
+           parentFragmentManager.commit {
+               setReorderingAllowed(true)
+               addToBackStack("babyBoomer")
+           }
         }
 
         val callback=object:OnBackPressedCallback(true){
