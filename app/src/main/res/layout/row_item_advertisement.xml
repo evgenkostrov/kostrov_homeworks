@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/category"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:background="@drawable/background_appbar2">
+
+    <TextView
+        android:id="@+id/advertisementTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:paddingStart="3dp"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/background_slash"
+     android:text="ADV" />
+
+    <TextView
+        android:id="@+id/advertisementText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:paddingStart="3dp"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/advertisementTitle"
+        app:layout_constraintTop_toTopOf="parent"
+       android:text="Сдай старую АКБ и получи скидку" />
+
+    <TextView
+        android:id="@+id/advertisementDiscount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:padding="3dp"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:src="@drawable/ic_baseline_dangerous_24"
+        app:layout_constraintEnd_toStartOf="@id/advertisementClose"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/background_appbar"
+        android:backgroundTint="@color/green"
+        tools:text="10%" />
+
+    <ImageView
+        android:id="@+id/advertisementClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:src="@drawable/ic_baseline_dangerous_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+         />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
