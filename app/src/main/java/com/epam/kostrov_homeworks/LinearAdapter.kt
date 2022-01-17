@@ -1,11 +1,17 @@
 package com.epam.kostrov_homeworks
 
+import android.animation.LayoutTransition
+import android.opengl.Visibility
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.chip.Chip
 
 class LinearAdapter(private val listener: ItemClickListener) :
     RecyclerView.Adapter<LinearAdapter.AllViewHolder>() {
@@ -22,11 +28,26 @@ class LinearAdapter(private val listener: ItemClickListener) :
         }
 
         val view = LayoutInflater.from(parent.context).inflate(layout, parent, false)
+
+
+
         return AllViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: AllViewHolder, position: Int) {
         holder.bind(modelList[position])
+
+        val viewGroup = holder.itemView.findViewById<ConstraintLayout>(R.id.constraint)
+        viewGroup?.layoutTransition?.setDuration(5000)
+//        viewGroup?.layoutTransition?.enableTransitionType(LayoutTransition.CHANGING)
+//        viewGroup?.layoutTransition?.setStartDelay(LayoutTransition.CHANGING,1000)
+
+        holder.itemView.findViewById<Chip>(R.id.chip5)?.setOnClickListener {
+            val tvExp = holder.itemView.findViewById<TextView>(R.id.tvExpend)
+            if (!tvExp.isVisible) tvExp.visibility = View.VISIBLE else tvExp.visibility = View.GONE
+            notifyDataSetChanged()
+        }
+
     }
 
     override fun getItemCount(): Int = modelList.size
@@ -60,12 +81,14 @@ class LinearAdapter(private val listener: ItemClickListener) :
         private fun bindAkb(item: ItemViewModel.Akb) {
             itemView.findViewById<TextView>(R.id.text_view_name)?.text = item.name
             itemView.findViewById<ImageView>(R.id.image_view_akb)?.setImageResource(item.image)
+
         }
 
         private fun bindAdvertisement(item: ItemViewModel.Advertisement) {
             itemView.findViewById<ImageView>(R.id.advertisementClose).setOnClickListener {
                 listener.clickOnRow(item)
             }
+
             itemView.findViewById<TextView>(R.id.advertisementDiscount)?.text = item.discount
         }
 
