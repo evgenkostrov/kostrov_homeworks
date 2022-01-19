@@ -1,6 +1,8 @@
 package com.epam.domain.repository
 
-interface BatteryRepository{
-    suspend fun add()
+import com.epam.domain.model.Battery
+
+interface BatteryRepository {
+    suspend fun addBatteryFromRepository(battery: Battery)
     suspend fun getBatteryList()
 }

@@ -1,4 +1,4 @@
-package com.epam.kostrov_homeworks
+package com.epam.presentation
 
 import android.view.LayoutInflater
 import android.view.View

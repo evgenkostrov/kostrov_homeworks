@@ -1,4 +1,4 @@
-package com.epam.data.model
+package com.epam.domain.model
 
 data class Battery(
     val title: String,

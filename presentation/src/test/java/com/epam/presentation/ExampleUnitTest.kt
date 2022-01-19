@@ -1,4 +1,4 @@
-package com.epam.kostrov_homeworks
+package com.epam.presentation
 
 import org.junit.Test
 

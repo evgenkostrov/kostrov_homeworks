@@ -1,7 +1,9 @@
 package com.epam.data.local
 
-import com.epam.data.model.Battery
+import com.epam.domain.model.Battery
 
 interface BatteryLocalDataSource {
-    suspend fun add(battery:Battery)
+
+    suspend fun addBatteryLocal(battery:Battery)
+
 }

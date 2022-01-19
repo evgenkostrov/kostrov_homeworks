@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.epam.kostrov_homeworks">
+    package="com.epam.presentation">
 
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -10,10 +11,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Kostrov_homeworks">
         <activity
-            android:name=".MainActivity2"
+            android:name="com.epam.presentation.MainActivity2"
             android:exported="true" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.epam.presentation.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,14 +1,11 @@
-package com.epam.kostrov_homeworks
+package com.epam.presentation
 
-import android.animation.LayoutTransition
-import android.opengl.Visibility
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip

@@ -1,10 +1,9 @@
-package com.epam.kostrov_homeworks
+package com.epam.presentation
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.epam.kostrov_homeworks.databinding.ActivityMain2Binding
-import kotlin.random.Random
 
 class MainActivity2 : AppCompatActivity() {
     private lateinit var binding: ActivityMain2Binding

@@ -1,4 +1,4 @@
-package com.epam.kostrov_homeworks
+package com.epam.presentation
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
