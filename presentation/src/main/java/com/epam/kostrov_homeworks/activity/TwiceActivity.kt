@@ -1,12 +1,14 @@
-package com.epam.kostrov_homeworks
+package com.epam.kostrov_homeworks.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
+import com.epam.kostrov_homeworks.R
+import com.epam.kostrov_homeworks.adapter.GridAdapter
 import com.epam.kostrov_homeworks.databinding.ActivityMain2Binding
-import kotlin.random.Random
+import com.epam.kostrov_homeworks.model.Battery
 
-class MainActivity2 : AppCompatActivity() {
+class TwiceActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMain2Binding
     private lateinit var gridAdapter: GridAdapter
     private var beginIndex = 10
@@ -24,7 +26,7 @@ class MainActivity2 : AppCompatActivity() {
             val spanCount = 2
             gridAdapter = GridAdapter()
             gridAdapter.setData(getBatteryList())
-            rv2.layoutManager = GridLayoutManager(this@MainActivity2, spanCount)
+            rv2.layoutManager = GridLayoutManager(this@TwiceActivity, spanCount)
             rv2.adapter = gridAdapter
 
             imageAdd.setOnClickListener {

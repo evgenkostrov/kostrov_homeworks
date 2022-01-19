@@ -1,10 +1,13 @@
-package com.epam.kostrov_homeworks
+package com.epam.kostrov_homeworks.activity
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.epam.kostrov_homeworks.R
+import com.epam.kostrov_homeworks.adapter.LinearAdapter
 import com.epam.kostrov_homeworks.databinding.ActivityMainBinding
+import com.epam.kostrov_homeworks.model.ItemViewModel
 
 class MainActivity : AppCompatActivity(), LinearAdapter.ItemClickListener {
     private lateinit var binding: ActivityMainBinding
@@ -16,7 +19,7 @@ class MainActivity : AppCompatActivity(), LinearAdapter.ItemClickListener {
         setContentView(binding.root)
         initRecyclerView()
         binding.imageViewAkb.setOnClickListener {
-            startActivity(Intent(this, MainActivity2::class.java))
+            startActivity(Intent(this, TwiceActivity::class.java))
         }
 
 

@@ -1,4 +1,4 @@
-package com.epam.kostrov_homeworks
+package com.epam.kostrov_homeworks.model
 
 data class Battery(
     val title: String,

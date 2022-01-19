@@ -1,10 +1,12 @@
-package com.epam.kostrov_homeworks
+package com.epam.kostrov_homeworks.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.epam.kostrov_homeworks.R
 import com.epam.kostrov_homeworks.databinding.RowItemCardBinding
+import com.epam.kostrov_homeworks.model.Battery
 
 class GridAdapter : RecyclerView.Adapter<GridAdapter.CardViewHolder>() {
     private val batteries: MutableList<Battery> = mutableListOf()
@@ -12,7 +14,7 @@ class GridAdapter : RecyclerView.Adapter<GridAdapter.CardViewHolder>() {
     inner class CardViewHolder(item: View): RecyclerView.ViewHolder(item){
         private val binding = RowItemCardBinding.bind(item)
 
-        fun bind(battery:Battery) = with(binding) {
+        fun bind(battery: Battery) = with(binding) {
             name.text = battery.title
             image.setImageResource(battery.image)
         }}
