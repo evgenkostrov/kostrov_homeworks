@@ -8,5 +8,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "kostrov_homeworks"
 include ':presentation'
-include ':data'
 include ':domain'

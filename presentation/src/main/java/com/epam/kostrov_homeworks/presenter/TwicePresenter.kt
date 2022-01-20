@@ -2,25 +2,22 @@ package com.epam.kostrov_homeworks.presenter
 
 import android.os.Handler
 import com.epam.domain.model.ItemViewModel
+import com.epam.domain.usecase.AddItemTwiceUsecase
 import com.epam.domain.usecase.DeleteItemUsecase
 import com.epam.domain.usecase.GetAllAkbUseCase
 import com.epam.kostrov_homeworks.contract.MainContract
+import com.epam.kostrov_homeworks.contract.TwiceContract
 import com.epam.kostrov_homeworks.repository.RepositoryImpl
 
-class MainPresenter(private val view:MainContract.IView):MainContract.IPresenter {
+class TwicePresenter (private val view: TwiceContract.IView): TwiceContract.IPresenter {
     private val repository= RepositoryImpl()
-    private val getAllAkbUseCase=GetAllAkbUseCase(repository)
-    private val deleteItemUsecase=DeleteItemUsecase(repository)
+    private val addItemTwiceUsecase= AddItemTwiceUsecase(repository)
 
-    override fun getAllAkb() {
-       view.getAllItems(data=getAllAkbUseCase.invoke())
-    }
 
-    override fun deleteAdv(item: ItemViewModel) {
+    override fun addBattery() {
         val pause=2000L
         Handler().postDelayed({
-            view.getAllItems(data = deleteItemUsecase.invoke(item))
+            view.getAllBattery(addItemTwiceUsecase.invoke())
         },pause)
     }
-
 }

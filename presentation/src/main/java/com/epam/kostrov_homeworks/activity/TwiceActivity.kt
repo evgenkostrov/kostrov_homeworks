@@ -7,77 +7,41 @@ import com.epam.kostrov_homeworks.R
 import com.epam.kostrov_homeworks.adapter.GridAdapter
 import com.epam.kostrov_homeworks.databinding.ActivityMain2Binding
 import com.epam.domain.model.Battery
+import com.epam.kostrov_homeworks.contract.TwiceContract
+import com.epam.kostrov_homeworks.presenter.TwicePresenter
 
-class TwiceActivity : AppCompatActivity() {
+class TwiceActivity : AppCompatActivity(), TwiceContract.IView {
     private lateinit var binding: ActivityMain2Binding
     private lateinit var gridAdapter: GridAdapter
-    private var beginIndex = 10
+    private lateinit var presenter: TwicePresenter
+    private var beginIndex = 1
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMain2Binding.inflate(layoutInflater)
         setContentView(binding.root)
-        initRecyclerView()
+        presenter = TwicePresenter(this)
+        gridAdapter = GridAdapter()
+        binding.imageAdd.setOnClickListener {
+            presenter.addBattery()
+
+        }
     }
 
-    private fun initRecyclerView() {
-        binding.apply {
 
+    override fun getAllBattery(item: Battery) {
+        gridAdapter.addItem(item)
+        binding.apply {
             val spanCount = 2
-            gridAdapter = GridAdapter()
-            gridAdapter.setData(getBatteryList())
             rv2.layoutManager = GridLayoutManager(this@TwiceActivity, spanCount)
             rv2.adapter = gridAdapter
 
-            imageAdd.setOnClickListener {
-                gridAdapter.addItem(
-                    Battery(
-                        TITLE[(0..9).shuffled().last()],
-                        IMAGE[(0..9).shuffled().last()]
-                    )
-                )
-                beginIndex++
-                rv2.smoothScrollToPosition(beginIndex - 1)
-            }
+            beginIndex++
+            rv2.smoothScrollToPosition(beginIndex - 1)
         }
-    }
-
-    private fun getBatteryList(): List<Battery> {
-        return (0..9).map {
-            Battery(
-                TITLE[(0..9).shuffled().last()],
-                IMAGE[(0..9).shuffled().last()]
-            )
-        }
-    }
-
-    companion object {
-        private val TITLE = mutableListOf<String>(
-            "TUBOR AQUATECH",
-            "TUBOR SYNERGY",
-            "TUBOR STANDART",
-            "TUBOR TRUCK",
-            "TUBOR EFB",
-            "TUBOR ASIA",
-            "TUBOR GEL",
-            "TITAN ARCTIC",
-            "ARCTIC ASIA",
-            "VAIPER"
-        )
-
-        private val IMAGE = mutableListOf<Int>(
-            R.drawable.t1,
-            R.drawable.t2,
-            R.drawable.t3,
-            R.drawable.t4,
-            R.drawable.t5,
-            R.drawable.t6,
-            R.drawable.t7,
-            R.drawable.t8,
-            R.drawable.t9,
-            R.drawable.t10
-        )
     }
 }
+
 
 
