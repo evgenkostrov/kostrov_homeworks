@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.epam.kostrov_homeworks.R
 import com.epam.kostrov_homeworks.adapter.GridAdapter
 import com.epam.kostrov_homeworks.databinding.ActivityMain2Binding
-import com.epam.kostrov_homeworks.model.Battery
+import com.epam.domain.model.Battery
 
 class TwiceActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMain2Binding

@@ -9,7 +9,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.epam.kostrov_homeworks.R
-import com.epam.kostrov_homeworks.model.ItemViewModel
+import com.epam.domain.model.ItemViewModel
 import com.google.android.material.chip.Chip
 
 class LinearAdapter(private val listener: ItemClickListener) :

@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.epam.kostrov_homeworks.R
 import com.epam.kostrov_homeworks.databinding.RowItemCardBinding
-import com.epam.kostrov_homeworks.model.Battery
+import com.epam.domain.model.Battery
 
 class GridAdapter : RecyclerView.Adapter<GridAdapter.CardViewHolder>() {
     private val batteries: MutableList<Battery> = mutableListOf()

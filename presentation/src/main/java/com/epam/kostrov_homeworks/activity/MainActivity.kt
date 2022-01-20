@@ -7,99 +7,37 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.epam.kostrov_homeworks.R
 import com.epam.kostrov_homeworks.adapter.LinearAdapter
 import com.epam.kostrov_homeworks.databinding.ActivityMainBinding
-import com.epam.kostrov_homeworks.model.ItemViewModel
+import com.epam.domain.model.ItemViewModel
+import com.epam.kostrov_homeworks.contract.MainContract
+import com.epam.kostrov_homeworks.presenter.MainPresenter
 
-class MainActivity : AppCompatActivity(), LinearAdapter.ItemClickListener {
+class MainActivity : AppCompatActivity(), LinearAdapter.ItemClickListener,MainContract.IView {
     private lateinit var binding: ActivityMainBinding
     private lateinit var linearAdapter: LinearAdapter
+    private lateinit var presenter: MainContract.IPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        initRecyclerView()
         binding.imageViewAkb.setOnClickListener {
             startActivity(Intent(this, TwiceActivity::class.java))
         }
-
-
+        presenter=MainPresenter(this)
+        presenter.getAllAkb()
     }
 
-    private fun initRecyclerView() {
+    override fun clickOnRow(item: ItemViewModel) {
+        presenter.deleteAdv(item)
+    }
+
+    override fun getAllItems(data: List<ItemViewModel>) {
         linearAdapter = LinearAdapter(this)
-        linearAdapter.setData(getModelList())
+        linearAdapter.setData(data)
         binding.rv.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = linearAdapter
         }
-    }
-
-    private fun getModelList(): List<ItemViewModel> {
-        val list = mutableListOf<ItemViewModel>()
-        for (a in 0..100 step 3) {
-            list.addAll(
-                a, listOf(
-                    ItemViewModel.Category(
-                        CATEGORY[(0..3).shuffled().last()]
-                    )
-                )
-            )
-
-            list.addAll(
-                a + 1, listOf(
-                    ItemViewModel.Akb(
-                        TITLE[(0..9).shuffled().last()],
-                        IMAGE[(0..9).shuffled().last()]
-                    )
-                )
-            )
-            list.addAll(
-                a + 2, listOf(
-                    ItemViewModel.Advertisement(
-                        "${(10..20).random()}%"
-                    )
-                )
-            )
-        }
-        return list
-    }
-
-    companion object {
-        private val CATEGORY = mutableListOf<String>(
-            "STARTER BATTERY",
-            "INDUSTRIAL BATTERY",
-            "BATTERY FOR WATER TRANSPORT",
-            "BATTERY FOR START/STOP SYSTEM"
-        )
-
-        private val TITLE = mutableListOf<String>(
-            "TUBOR AQUATECH",
-            "TUBOR SYNERGY",
-            "TUBOR STANDART",
-            "TUBOR TRUCK",
-            "TUBOR EFB",
-            "TUBOR ASIA",
-            "TUBOR GEL",
-            "TITAN ARCTIC",
-            "ARCTIC ASIA",
-            "VAIPER"
-        )
-        private val IMAGE = mutableListOf<Int>(
-            R.drawable.t1,
-            R.drawable.t2,
-            R.drawable.t3,
-            R.drawable.t4,
-            R.drawable.t5,
-            R.drawable.t6,
-            R.drawable.t7,
-            R.drawable.t8,
-            R.drawable.t9,
-            R.drawable.t10
-        )
-    }
-
-    override fun clickOnRow(item: ItemViewModel) {
-        linearAdapter.deleteData(item)
     }
 
 }

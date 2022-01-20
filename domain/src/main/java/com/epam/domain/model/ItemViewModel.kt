@@ -1,4 +1,4 @@
-package com.epam.kostrov_homeworks.model
+package com.epam.domain.model
 
 sealed class ItemViewModel {
 
