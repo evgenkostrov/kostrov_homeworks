@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/masterSongsFragment">
+
+    <fragment
+        android:id="@+id/masterSongsFragment"
+        android:name="com.epam.kostrov_homeworks.master_fragment.MasterSongsFragment"
+        android:label="MasterSongsFragment" >
+        <action
+            android:id="@+id/action_masterSongsFragment_to_songFragment"
+            app:destination="@id/songFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/songFragment"
+        android:name="com.epam.kostrov_homeworks.detail_fragment.DetailSongFragment"
+        android:label="SongFragment" />
+</navigation>
