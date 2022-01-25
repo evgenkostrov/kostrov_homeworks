@@ -6,6 +6,6 @@ import com.epam.domain.repository.DetailSongRepository
 class GetDetailUseCase (
     private val detailSongRepository: DetailSongRepository
 ) {
-   fun invoke (id : String) : Song? = detailSongRepository.getSongById(id)
+   operator fun invoke (id : String) : Song? = detailSongRepository.getSongById(id)
     }
 

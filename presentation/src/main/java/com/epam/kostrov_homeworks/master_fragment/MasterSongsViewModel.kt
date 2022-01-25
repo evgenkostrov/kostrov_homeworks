@@ -9,16 +9,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class MasterSongsViewModel(
-    private var masterSongsRepository: MasterSongsRepository,
+class MasterSongsViewModel() : ViewModel() {
 
-    private var getMasterSongsUseCase: GetMasterSongsUseCase) : ViewModel() {
-
-    init {
-        masterSongsRepository=MasterSongsRepositoryImpl()
-        getMasterSongsUseCase=GetMasterSongsUseCase(masterSongsRepository)
-    }
-
+    private val masterSongsRepository = MasterSongsRepositoryImpl()
+    private val getMasterSongsUseCase = GetMasterSongsUseCase(masterSongsRepository)
     private val _masterSongs =
         MutableLiveData(getMasterSongsUseCase.invoke())
     val masterSongs: LiveData<List<SongPreview>> = _masterSongs

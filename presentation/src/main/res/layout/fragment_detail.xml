@@ -20,7 +20,7 @@
         tools:text="Battery" />
 
     <TextView
-        android:id="@+id/singer"
+        android:id="@+id/performer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
@@ -30,21 +30,16 @@
         app:layout_constraintTop_toBottomOf="@id/title"
         tools:text="Beatles" />
 
-    <ScrollView
-        android:id="@+id/scrollView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingTop="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
         <TextView
             android:id="@+id/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/performer"
+            />
 
-    </ScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

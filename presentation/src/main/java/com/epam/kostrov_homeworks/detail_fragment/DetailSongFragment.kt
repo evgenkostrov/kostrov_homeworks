@@ -1,44 +1,41 @@
 package com.epam.kostrov_homeworks.detail_fragment
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import com.epam.domain.model.Song
 import com.epam.kostrov_homeworks.R
 import com.epam.kostrov_homeworks.databinding.FragmentDetailBinding
-import com.epam.kostrov_homeworks.master_fragment.MasterSongsFragment.Companion.ARGS_KEY
 
 class DetailSongFragment : Fragment(R.layout.fragment_detail) {
-
-    private lateinit var binding : FragmentDetailBinding
-
-    private val viewModel : DetailSongViewModel by activityViewModels()
-
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        binding = FragmentDetailBinding.bind(view)
-        getArgument()
-        initObservers()
+    private lateinit var binding: FragmentDetailBinding
+    private val viewModel: DetailSongViewModel by viewModels()
+    private val songObserver = Observer<Song> { song ->
+        if (song != null) {
+            binding.title.text = song.title
+            binding.text.text = song.text
+            binding.performer.text = song.performer
+        }
     }
 
-    private fun getArgument() {
-        val id = requireArguments().getString(ARGS_KEY)
-        viewModel.onArgumentsReceived(id)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = FragmentDetailBinding.inflate(inflater, container, false)
+
+        val id = arguments?.getString(ARGS_KEY, "0")
+        id?.let { viewModel.getDetailSong(it) }
+        viewModel.detailSongs.observe(viewLifecycleOwner, songObserver)
+
+        return binding.root
     }
 
-    private fun initObservers() {
-        viewModel.title.observe(viewLifecycleOwner) { title ->
-            binding.title.text = title
-        }
-
-        viewModel.performer.observe(viewLifecycleOwner) { performer ->
-            binding.singer.text = performer
-        }
-
-        viewModel.text.observe(viewLifecycleOwner) { text ->
-            binding.text.text = text
-        }
+    companion object {
+        const val ARGS_KEY = "SONG_ARGS_KEY"
     }
 }
