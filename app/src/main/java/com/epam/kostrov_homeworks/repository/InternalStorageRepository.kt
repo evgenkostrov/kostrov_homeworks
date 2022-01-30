@@ -9,7 +9,7 @@ class InternalStorageRepository (private val context: Context) :Repository{
     private val fileName = "TextTrain.txt"
 
 
-    override fun get(): TextTrain {
+    override fun get(): TextTrain? {
 
        return context.openFileInput(fileName).bufferedReader().useLines { lines->
            lines.fold(""){some,text->"$some\n$text"}
