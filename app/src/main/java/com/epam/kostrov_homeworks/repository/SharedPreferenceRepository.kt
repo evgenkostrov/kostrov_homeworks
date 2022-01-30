@@ -10,11 +10,15 @@ class SharedPreferenceRepository(context: Context) :Repository{
     private val prefs = context.getSharedPreferences(PREFS,MODE_PRIVATE)
 
 
-    override fun get(): List<TextTrain> {
-        TODO("Not yet implemented")
+    override fun get(): TextTrain? {
+
+        return prefs.getString(PREFS,"empty")?.let { TextTrain(it) }
     }
 
     override fun set(textTrain: TextTrain) {
-        TODO("Not yet implemented")
+        with(prefs.edit()){
+            putString(PREFS,textTrain.txt)
+            apply()
+        }
     }
 }
