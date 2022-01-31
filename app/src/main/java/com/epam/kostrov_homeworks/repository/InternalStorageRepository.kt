@@ -1,8 +1,10 @@
 package com.epam.kostrov_homeworks.repository
 
 import android.content.Context
+import com.epam.kostrov_homeworks.domain.Repository
+import com.epam.kostrov_homeworks.domain.TextTrain
 
-class InternalStorageRepository (private val context: Context) :Repository{
+class InternalStorageRepository (private val context: Context) : Repository {
 
 
 

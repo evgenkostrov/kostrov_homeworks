@@ -3,6 +3,8 @@ package com.epam.kostrov_homeworks.repository
 import android.content.Context
 import android.os.Environment
 import android.widget.Toast
+import com.epam.kostrov_homeworks.domain.Repository
+import com.epam.kostrov_homeworks.domain.TextTrain
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream

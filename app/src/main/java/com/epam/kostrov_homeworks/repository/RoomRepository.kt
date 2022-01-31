@@ -1,15 +1,16 @@
 package com.epam.kostrov_homeworks.repository
 
 import android.content.Context
-import androidx.room.Database
 import androidx.room.Room
 import com.epam.kostrov_homeworks.data.TextDatabase
 import com.epam.kostrov_homeworks.data.TextTrainEntity
+import com.epam.kostrov_homeworks.domain.Repository
+import com.epam.kostrov_homeworks.domain.TextTrain
 
 class RoomRepository (context: Context) : Repository {
     private val database = Room.databaseBuilder(
         context, TextDatabase::class.java, "textTrain.db"
-    ).build()
+    ).allowMainThreadQueries().build()
 
     private val dao = database.textDao()
 

@@ -2,10 +2,12 @@ package com.epam.kostrov_homeworks.repository
 
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
+import com.epam.kostrov_homeworks.domain.Repository
+import com.epam.kostrov_homeworks.domain.TextTrain
 
 private const val PREFS = "txt"
 
-class SharedPreferenceRepository(context: Context) :Repository{
+class SharedPreferenceRepository(context: Context) : Repository {
 
     private val prefs = context.getSharedPreferences(PREFS,MODE_PRIVATE)
 

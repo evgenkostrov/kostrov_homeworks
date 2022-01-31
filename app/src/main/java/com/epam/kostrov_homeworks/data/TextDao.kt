@@ -3,11 +3,10 @@ package com.epam.kostrov_homeworks.data
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import com.epam.kostrov_homeworks.repository.TextTrain
 
 @Dao
 interface TextDao {
-    @Query("SELECT * FROM text_train")
+    @Query("SELECT * FROM text_train ORDER BY ID DESC LIMIT 1")
     fun get(): TextTrainEntity
 
     @Insert
