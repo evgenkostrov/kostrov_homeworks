@@ -5,10 +5,7 @@ import android.os.Environment
 import android.widget.Toast
 import com.epam.kostrov_homeworks.domain.Repository
 import com.epam.kostrov_homeworks.domain.TextTrain
-import java.io.File
-import java.io.FileInputStream
-import java.io.FileOutputStream
-import java.io.IOException
+import java.io.*
 import java.lang.Exception
 
 class ExternalStorageRepository(private val context: Context) : Repository {
@@ -39,37 +36,25 @@ class ExternalStorageRepository(private val context: Context) : Repository {
         }
     }
 
-    private fun readTextData(file: File): String? {
-        var fis: FileInputStream? = null
+    private fun readTextData(file: File): String {
+        val fis = FileInputStream(file)
+        val reader = BufferedReader(fis.reader())
+        val content = StringBuilder()
         try {
-            fis = FileInputStream(file)
-         val str:String
-            val buffer = StringBuffer()
-            while (fis.read() != -1) {
-                buffer.append(fis.read().toString())
+            var line = reader.readLine()
+            while (line != null) {
+                content.append(line)
+                line = reader.readLine()
             }
-            return buffer.toString()
-        } catch (e: Exception) {
-            e.printStackTrace()
         } finally {
-            if (fis != null) {
-                try {
-                    fis.close()
-                } catch (e: IOException) {
-                    e.printStackTrace()
-                }
-            }
+            reader.close()
         }
-        return null
+        return content.toString()
     }
 
-
-    override fun get(): TextTrain? {
-
-            return readTextData(file)?.let { TextTrain(it) }
-
+    override fun get(): TextTrain {
+        return TextTrain(readTextData(file))
     }
-
 
     override fun set(textTrain: TextTrain) {
         if (isExternalStorageWritable()) {

@@ -6,10 +6,7 @@ import com.epam.kostrov_homeworks.domain.TextTrain
 
 class InternalStorageRepository (private val context: Context) : Repository {
 
-
-
     private val fileName = "TextTrain.txt"
-
 
     override fun get(): TextTrain? {
 
