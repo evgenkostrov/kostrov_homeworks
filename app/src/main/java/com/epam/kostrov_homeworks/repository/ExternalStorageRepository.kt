@@ -41,10 +41,10 @@ class ExternalStorageRepository(private val context: Context) : Repository {
         var fis: FileInputStream? = null
         try {
             fis = FileInputStream(file)
-            val i = fis.read()
+         val str:String
             val buffer = StringBuffer()
-            while (i != -1) {
-                buffer.append(i)
+            while (fis.read() != -1) {
+                buffer.append(fis.read().toString())
             }
             return buffer.toString()
         } catch (e: Exception) {
