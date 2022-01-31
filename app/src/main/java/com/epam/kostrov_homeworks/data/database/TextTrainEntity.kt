@@ -1,4 +1,4 @@
-package com.epam.kostrov_homeworks.data
+package com.epam.kostrov_homeworks.data.database
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

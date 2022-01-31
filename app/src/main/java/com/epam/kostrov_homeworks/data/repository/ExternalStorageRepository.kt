@@ -1,4 +1,4 @@
-package com.epam.kostrov_homeworks.repository
+package com.epam.kostrov_homeworks.data.repository
 
 import android.content.Context
 import android.os.Environment

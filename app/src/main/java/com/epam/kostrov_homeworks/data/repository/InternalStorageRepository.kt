@@ -1,4 +1,4 @@
-package com.epam.kostrov_homeworks.repository
+package com.epam.kostrov_homeworks.data.repository
 
 import android.content.Context
 import com.epam.kostrov_homeworks.domain.Repository
@@ -8,7 +8,7 @@ class InternalStorageRepository (private val context: Context) : Repository {
 
     private val fileName = "TextTrain.txt"
 
-    override fun get(): TextTrain? {
+    override fun get(): TextTrain {
 
        return context.openFileInput(fileName).bufferedReader().useLines { lines->
            lines.fold(""){some,text->"$some\n$text"}
